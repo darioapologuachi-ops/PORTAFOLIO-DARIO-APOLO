@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio — Darío Apolo</title>
+  <meta name="description" content="Portafolio profesional de Darío Apolo: proyectos urbanos, artículos y contacto." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <!-- FontAwesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f9fafb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --brand: #2563eb;
+      --brand-dark: #1e40af;
+      --overlay: rgba(0,0,0,.65);
+    }
+
+    * {box-sizing: border-box;}
+    body {margin:0; font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); line-height:1.7;}
+    .container {width:min(1100px,92%); margin-inline:auto;}
+    a {color:inherit}
+
+    /* Header */
+    header {position:sticky; top:0; background:#fff; border-bottom:1px solid #e5e7eb; z-index:50;}
+    nav {display:flex; justify-content:space-between; align-items:center; padding:1rem 0;}
+    .brand {font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; color:var(--brand); text-decoration:none;}
+    .nav-links {display:flex; gap:2rem;}
+    .nav-links a {text-decoration:none; color:var(--muted); padding:.5rem .8rem; border-radius:6px; transition:.2s;}
+    .nav-links a:hover {background:#f3f4f6; color:var(--brand);}
+
+    /* Hero */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      text-align: center;
+      color: white;
+      background: url("img/perfil1.png") no-repeat;
+      background-size: cover;
+      background-position: 20% top; /* desplaza tu cara a la izquierda */
+    }
+
+    .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, rgba(0,0,0,0.3), rgba(37,99,235,0.15)), /* degradado dinámico */
+    url("img/perfil1.png") no-repeat;
+  background-size: cover;
+  background-position: 20% top;
+  z-index: 0;
+}
+    .hero > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn.primary { background: #2563eb; color: white; }
+    .btn.secondary { background: #f3f4f6; color: #2563eb; }
+    .btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+    .btn {
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+.contact-icons a {
+  background: #f3f4f6;
+  border-radius: 50%;
+  padding: 12px;
+  transition: 0.3s;
+}
+.contact-icons a:hover {
+  background: var(--brand);
+  color: white;
+}
+footer {
+  background: linear-gradient(135deg, #111827, #1f2937);
+}
+
+    /* Secciones */
+    section {padding:64px 0;}
+    .section-title {font-size:1.8rem; text-align:center; margin:0 0 .5rem;}
+    .section-lead {color:var(--muted); text-align:center; margin:0 0 2rem;}
+
+    /* Proyectos (full width) */
+    .fullwidth {width:100%; padding:80px 0; background:var(--bg-alt);}
+    .fullwidth .grid {display:grid; gap:32px; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); width:100%; padding-inline:clamp(16px,5vw,64px);}
+
+    .card {background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); overflow:hidden; transition:.2s; cursor:pointer;}
+    .card:hover {transform:translateY(-4px); box-shadow:0 10px 22px rgba(0,0,0,.12);}
+    .card img {width:100%; height:190px; object-fit:cover; display:block;}
+    .card h3 {margin:.8rem; font-size:1.1rem;}
+
+    /* Contacto */
+    .contact-buttons {text-align:center; margin-top:2rem;}
+    .contact-buttons a {display:inline-block; margin:10px; padding:12px 20px; border-radius:8px; font-weight:600; text-decoration:none; color:#fff;}
+    .whatsapp {background:#25D366;}
+    .email {background:var(--brand);}
+    .contact-icons {margin-top:2rem; text-align:center; font-size:2rem;}
+    .contact-icons a {margin:0 12px; color:var(--muted); transition:.2s;}
+    .contact-icons a:hover {color:var(--brand);}
+
+    /* Footer */
+    footer {background:#111827; color:#d1d5db; text-align:center; padding:2rem 1rem; font-size:.9rem;}
+    footer a {color:#60a5fa; text-decoration:none;}
+    footer a:hover {text-decoration:underline;}
+
+    /* Lightbox personalizado */
+    body.no-scroll {overflow:hidden;}
+    .lb {display:none; position:fixed; inset:0; background:var(--overlay); backdrop-filter: blur(3px); z-index:1000; align-items:center; justify-content:center;}
+    .lb[aria-hidden="false"] {display:flex;}
+    .lb-dialog {position:relative; width:min(95vw, 1100px); max-height:90vh; background:#0b0b0b; border-radius:14px; padding:10px; display:flex; align-items:center; justify-content:center; box-shadow:0 20px 60px rgba(0,0,0,.5);}
+    .lb-figure {margin:0; width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;}
+    .lb-img {max-width:100%; max-height:75vh; border-radius:10px; display:block; object-fit:contain; background:#000;}
+    .lb-cap {color:#e5e7eb; font-size:.95rem; text-align:center; min-height:1.2em;}
+
+    .lb-btn {position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); color:#fff; border:none; width:46px; height:46px; border-radius:999px; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s;}
+    .lb-btn:hover {background:rgba(255,255,255,.22);}
+    .lb-prev {left:12px;}
+    .lb-next {right:12px;}
+    .lb-close {position:absolute; top:10px; right:10px; width:42px; height:42px; border-radius:999px; border:none; cursor:pointer; background:rgba(255,255,255,.12); color:#fff; font-size:22px;}
+    .lb-hint {position:absolute; bottom:8px; right:12px; color:#9ca3af; font-size:.8rem;}
+
+    @media (max-width: 640px) {
+      .lb-dialog {width:96vw; padding:8px;}
+      .lb-btn {width:40px; height:40px; font-size:20px;}
+      .lb-img {max-height:70vh;}
+    }
+      </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#inicio">Darío Apolo</a>
+        <div class="nav-links">
+          <a href="conoceme.html">Conóceme</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="https://www.linkedin.com/in/joseapolog" target="_blank">Artículos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Hola, soy <strong>Darío Apolo</strong></h1>
+      <p>Urbanista y Diseñador de Proyectos Públicos. Especialista en Planificación del Territorio, Regeneración Urbana, Espacio Público y Movilidad Activa.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#proyectos">Ver proyectos</a>
+        <a class="btn secondary" href="conoceme.html">Conóceme</a>
+        <a class="btn primary" href="https://www.linkedin.com/in/joseapolog" target="_blank">Ver artículos</a>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="fullwidth">
+      <h2 class="section-title">Proyectos</h2>
+      <p class="section-lead">Selección de proyectos destacados</p>
+      <div class="grid">
+        <article class="card" data-gallery="bicentenario">
+          <img src="img/plaza1.jpg" alt="Plaza Bicentenario — vista general">
+          <h3>Plaza Bicentenario</h3>
+        </article>
+        <article class="card" data-gallery="suds">
+          <img src="img/suds1.jpg" alt="Corredor Ecológico — vista general">
+          <h3>Corredor Ecológico</h3>
+        </article>
+        <article class="card" data-gallery="inter">
+          <img src="img/inter1.jpg" alt="Intersección Av. 25 de Junio — vista general">
+          <h3>Regeneraciones Urbanas</h3>
+        </article>
+        <article class="card" data-gallery="parques">
+          <img src="img/parque1.jpg" alt="Parques Urbanos — zona infantil">
+          <h3>Parques Urbanos</h3>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="container">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-lead">Puedes escribirme directamente por WhatsApp, correo electrónico o seguirme en mis redes.</p>
+
+      <div class="contact-buttons">
+        <a class="whatsapp" href="https://wa.me/593981343006?text=Hola%20Dar%C3%ADo,%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank">
+          <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+        </a>
+        <a class="email" href="mailto:joseapolo1996@gmail.com">
+          <i class="fas fa-envelope"></i> Enviar un correo
+        </a>
+      </div>
+
+      <div class="contact-icons">
+        <a href="https://www.linkedin.com/in/joseapolog" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://wa.me/593981343006" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:joseapolo1996@gmail.com" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> Darío Apolo · Portafolio
+    <br>
+    <a href="https://www.linkedin.com/in/joseapolog" target="_blank">LinkedIn</a> ·
+    <a href="mailto:joseapolo1996@gmail.com">Correo</a>
+  </footer>
+
+  <!-- LIGHTBOX PERSONALIZADO -->
+  <div id="lightbox" class="lb" aria-hidden="true">
+    <div class="lb-dialog" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
+      <button class="lb-close" type="button" aria-label="Cerrar (Esc)">&times;</button>
+      <button class="lb-btn lb-prev" type="button" aria-label="Anterior">&#10094;</button>
+
+      <figure class="lb-figure">
+        <img id="lb-img" class="lb-img" src="" alt="">
+        <figcaption id="lb-cap" class="lb-cap"></figcaption>
+      </figure>
+
+      <button class="lb-btn lb-next" type="button" aria-label="Siguiente">&#10095;</button>
+      <div class="lb-hint">Usa ← → para navegar, Esc para cerrar</div>
+    </div>
+  </div>
+
+  <script>
+    // Año dinámico
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // --- Galerías por proyecto (ajusta rutas/nombres si hace falta) ---
+    const galleries = {
+      bicentenario: [
+        { src: 'img/plaza1.jpg', cap: 'Plaza Bicentenario — Vista general' },
+        { src: 'img/plaza2.jpg', cap: 'Plaza Bicentenario — Detalle' },
+        { src: 'img/plaza3.jpg', cap: 'Plaza Bicentenario — Áreas verdes' },
+               { src: 'img/plaza5.jpg', cap: 'Plaza Bicentenario — Áreas verdes' },
+      ],
+      suds: [
+        { src: 'img/suds1.jpg', cap: 'Corredor Ecológico — Vista general' },
+        { src: 'img/suds2.jpg', cap: 'Corredor Ecológico — Detalle' }
+      ],
+      inter: [
+        { src: 'img/inter1.jpg', cap: 'Intersección — Vista general' },
+        { src: 'img/inter2.jpg', cap: 'Intersección — Diseño paisajístico' },
+         { src: 'img/interseccion.jpg', cap: 'Intersección — Diseño paisajístico' },
+         { src: 'img/busstop.jpg', cap: 'Intersección — Parada de bus' },
+         { src: 'img/4.jpg', cap: 'Intersección — Parada de bus' },
+         { src: 'img/5.jpg', cap: 'Urbanismo — Regeneracion Urbana' },
+         { src: 'img/6.jpg', cap: 'Urbanismo — Paisajismo' },
+         { src: 'img/7.jpg', cap: 'Urbanismo — Xeropaisajismo' },
+      ],
+      parques: [
+        { src: 'img/parque1.jpg', cap: 'Parques Urbanos — Zona infantil' },
+        { src: 'img/parque2.jpg', cap: 'Parques Urbanos — Juegos sostenibles' },
+        { src: 'img/parque3.jpg', cap: 'Parques Urbanos — Mobiliario urbano' }, 
+        { src: 'img/parque4.jpg', cap: 'Parques Urbanos — Mobiliario urbano' }, 
+        { src: 'img/parque6.jpg', cap: 'Parques Urbanos — Mobiliario urbano' },
+        { src: 'img/parque7.jpg', cap: 'Parques Urbanos — Parque Inclusivo' },
+        { src: 'img/parque8.jpg', cap: 'Parques Urbanos — Parque Inclusivo' },
+        { src: 'img/parque9.jpg', cap: 'Parques Urbanos — Parque Inclusivo' },
+      ]
+    };
+
+    // Estado del visor
+    let currentKey = null;
+    let currentIndex = 0;
+
+    // Elementos del visor
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCap = document.getElementById('lb-cap');
+    const btnPrev = document.querySelector('.lb-prev');
+    const btnNext = document.querySelector('.lb-next');
+    const btnClose = document.querySelector('.lb-close');
+
+    // Abrir
+    function openLightbox(key, index = 0) {
+      if (!galleries[key]) return;
+      currentKey = key;
+      currentIndex = index;
+      updateLightbox();
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('no-scroll');
+      // Enfocar para accesibilidad
+      btnClose.focus();
+      // Listener teclado
+      document.addEventListener('keydown', onKey);
+    }
+
+    // Cerrar
+    function closeLightbox() {
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+      document.removeEventListener('keydown', onKey);
+      currentKey = null;
+      currentIndex = 0;
+    }
+
+    // Actualizar imagen/caption
+    function updateLightbox() {
+      const item = galleries[currentKey][currentIndex];
+      lbImg.src = item.src;
+      lbImg.alt = item.cap || '';
+      lbCap.textContent = item.cap || '';
+      // Preload vecinos
+      preloadNeighbor(-1);
+      preloadNeighbor(+1);
+      // Botones habilitados (siempre ciclamos)
+      btnPrev.disabled = false;
+      btnNext.disabled = false;
+    }
+
+    function preloadNeighbor(delta) {
+      const arr = galleries[currentKey];
+      const i = (currentIndex + delta + arr.length) % arr.length;
+      const img = new Image();
+      img.src = arr[i].src;
+    }
+
+    function nextImage() {
+      const arr = galleries[currentKey];
+      currentIndex = (currentIndex + 1) % arr.length;
+      updateLightbox();
+    }
+
+    function prevImage() {
+      const arr = galleries[currentKey];
+      currentIndex = (currentIndex - 1 + arr.length) % arr.length;
+      updateLightbox();
+    }
+
+    function onKey(e) {
+      if (lb.getAttribute('aria-hidden') === 'true') return;
+      if (e.key === 'Escape') { closeLightbox(); }
+      else if (e.key === 'ArrowRight') { nextImage(); }
+      else if (e.key === 'ArrowLeft') { prevImage(); }
+    }
+
+    // Eventos UI visor
+    btnNext.addEventListener('click', nextImage);
+    btnPrev.addEventListener('click', prevImage);
+    btnClose.addEventListener('click', closeLightbox);
+
+    // Cerrar haciendo clic fuera del dialog
+    lb.addEventListener('click', (e) => {
+      const dialog = e.currentTarget.querySelector('.lb-dialog');
+      if (!dialog.contains(e.target)) closeLightbox();
+    });
+
+    // Abrir desde tarjetas
+    document.querySelectorAll('[data-gallery]').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-gallery');
+        openLightbox(key, 0);
+      });
+    });
+  </script>
+</body>
+</html>
