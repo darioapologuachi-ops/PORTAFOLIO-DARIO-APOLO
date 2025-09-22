@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portafolio — Darío Apolo</title>
+  <meta name="description" content="Portafolio profesional de Darío Apolo: proyectos urbanos, artículos y contacto." />
+  <link rel="icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --brand: #2563eb;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    .container {width: min(1100px, 92%); margin-inline: auto;}
+
+    /* ===== NAVBAR ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 50;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--brand);
+      text-decoration: none;
+    }
+
+    .nav-links {display: flex; gap: .8rem; flex-wrap: wrap;}
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 0.5rem 0.8rem;
+      transition: 0.2s;
+      border-radius: 6px;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--brand);
+      background: #f3f4f6;
+    }
+
+    .btn {
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn.secondary {
+      background: #f3f4f6;
+      color: var(--brand);
+    }
+
+    /* ===== HERO con foto de fondo ===== */
+    .hero {
+      position: relative;
+      min-height: 40vH;
+      display: flex;
+      align-items: center;
+      color: white;
+      background: url("img/perfil.jpg") center/cover no-repeat;
+    background-position:center 20%;}
+
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      margin-bottom: 1.5rem;
+      color: #e5e7eb;
+    }
+
+    .buttons {display: flex; gap: 1rem; flex-wrap: wrap;}
+
+    /* ===== SECCIONES ===== */
+    section {padding: 64px 0;}
+    .section-title {font-size: 1.6rem; margin: 0 0 0.5rem;}
+    .section-lead {color: var(--muted); margin: 0 0 1.5rem;}
+
+    /* ===== GRID PROYECTOS ===== */
+    .grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .card {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: .8rem;
+      display: block;
+    }
+    .card h3 {margin: 0.5rem 0;}
+    .card p {color: var(--muted);}
+    .badges {display: flex; gap: .6rem; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted);}
+
+    /* ===== ARTÍCULOS ===== */
+    .post {padding: 12px 0; border-bottom: 1px dashed #e5e7eb;}
+    .post a {text-decoration: none; color: var(--text);}
+    .post a:hover {text-decoration: underline; color: var(--brand);}
+
+    /* ===== FORMULARIO ===== */
+    form .row {display: grid; gap: 12px; grid-template-columns: 1fr 1fr;}
+    form .full {grid-column: span 2;}
+    label {font-size: .9rem; color: var(--muted); margin-bottom: 6px; display: block;}
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      background: white;
+      color: var(--text);
+      font-family: inherit;
+    }
+    textarea {min-height: 120px;}
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px rgba(37,99,235,.2);
+    }
+    button {
+      background: var(--brand);
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 24px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#inicio">Darío Apolo</a>
+        <div class="nav-links">
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#articulos">Artículos</a>
+          <a href="#contacto">Contacto</a>
+          <a href="https://www.linkedin.com/in/joseapolog" target="_blank">LinkedIn</a>
+          <a class="btn secondary" href="cv-dario-apolo.pdf" download target="_blank" rel="noopener">Descargar CV</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content container">
+        <h1>Hola, soy <strong>Darío Apolo</strong></h1>
+        <p>Urbanista y diseñador de proyectos públicos. Especialista en regeneración urbana, espacio público y movilidad activa. Aquí comparto mis proyectos, artículos e ideas.</p>
+        <div class="buttons">
+          <a class="btn" style="background: var(--brand); color:white;" href="#proyectos">Ver proyectos</a>
+          <a class="btn secondary" href="#sobre-mi">Conóceme</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi" class="container">
+      <h2 class="section-title">Sobre mí</h2>
+      <p class="section-lead">Mi trayectoria profesional y visión personal</p>
+      <p>Soy <strong>Darío Apolo</strong>, arquitecto y analista de diseño de proyectos de obras de inversión municipal en Machala. Mi experiencia combina el <em>diseño urbano sostenible</em> con la gestión técnica de obras públicas, orientado siempre a mejorar la calidad de vida de las personas a través de espacios inclusivos y resilientes.</p>
+      <p>He participado en más de 20 proyectos de parques, plazas y regeneraciones urbanas, integrando criterios de accesibilidad universal, movilidad activa y sostenibilidad ambiental. Mi enfoque está inspirado en referentes como Jane Jacobs, Jan Gehl y Kevin Lynch, aplicados al contexto local de Machala para generar una ciudad más humana y conectada.</p>
+      <p>Además de mi labor en el sector público, desarrollo propuestas alternativas de planificación urbana y proyectos privados con visión integral: desde corredores ecológicos hasta planes maestros con criterios de eficiencia energética, drenaje urbano sostenible (SUDS) y resiliencia climática. Creo firmemente que el urbanismo es una herramienta para construir comunidades más justas, saludables y felices.</p>
+    </section>
+<!-- PROYECTOS -->
+<section id="proyectos" class="container">
+  <h2 class="section-title">Proyectos</h2>
+  <p class="section-lead">Selección de proyectos destacados</p>
+
+  <div class="grid">
+    <article class="card" data-gallery="bicentenario">
+      <img src="img/plazabicentenario.jpg" alt="Plaza Bicentenario - Vista general">
+      <h3>Plaza Bicentenario · Machala</h3>
+      <p>Diseño de una plaza de más de 2 ha con áreas verdes, accesibilidad y conectividad peatonal.</p>
+      <div class="badges"><span>Plaza</span><span>Sombra</span><span>Movilidad activa</span></div>
+    </article>
+
+    <article class="card" data-gallery="suds">
+      <img src="img/SUDS.jpg" alt="Corredor ecológico - detalle">
+      <h3>Corredor Ecológico</h3>
+      <p>Infraestructura verde-azul y drenaje urbano sostenible (SUDS) para resiliencia climática.</p>
+      <div class="badges"><span>SUDS</span><span>Resiliencia</span></div>
+    </article>
+
+    <article class="card" data-gallery="interseccion">
+      <img src="img/Interseccion.jpg" alt="Intersección 25 de Junio y A. Castro Benítez">
+      <h3>Intersección Av. 25 de Junio y Av. Alejandro Castro Benítez</h3>
+      <p>Diseño vial y paisajístico con parterre central de 3.50 m, accesibilidad universal y movilidad activa.</p>
+      <div class="badges"><span>Movilidad</span><span>Paisajismo</span><span>Diseño urbano</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox hidden">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" src="" alt="">
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+</div>
+
+<style>
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 999;
+  }
+  .lightbox.hidden {display: none;}
+  .lightbox-img {
+    max-width: 90%; max-height: 80vh;
+    border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+  .close {
+    position: absolute; top: 20px; right: 30px;
+    font-size: 2rem; color: #fff; cursor: pointer;
+  }
+  .prev, .next {
+    position: absolute; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    font-size: 3rem; color: #fff; cursor: pointer;
+  }
+  .prev {left: 20px;}
+  .next {right: 20px;}
+</style>
+
+<script>
+  // Galerías de imágenes
+  const galleries = {
+    bicentenario: [
+      "img/plazabicentenario.jpg",
+      "img/plaza2.jpg",
+      "img/plaza3.jpg"
+    ],
+    suds: [
+      "img/SUDS.jpg",
+      "img/suds1.jpg",
+      "img/SUDS3.jpg"
+    ],
+    interseccion: [
+      "img/Interseccion.jpg",
+      "img/inter1.jpg",
+      "img/inter2.jpg"
+    ]
+  };
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.querySelector(".lightbox-img");
+  const closeBtn = document.querySelector(".close");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  let currentGallery = [];
+  let currentIndex = 0;
+
+  // Abrir galería al hacer clic
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+      const galleryName = card.dataset.gallery;
+      currentGallery = galleries[galleryName];
+      currentIndex = 0;
+      showImage();
+      lightbox.classList.remove("hidden");
+    });
+  });
+
+  function showImage() {
+    lightboxImg.src = currentGallery[currentIndex];
+  }
+
+  // Controles
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+    showImage();
+  });
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % currentGallery.length;
+    showImage();
+  });
+  closeBtn.addEventListener("click", () => lightbox.classList.add("hidden"));
+
+  // Teclado
+  document.addEventListener("keydown", e => {
+    if (lightbox.classList.contains("hidden")) return;
+    if (e.key === "Escape") lightbox.classList.add("hidden");
+    if (e.key === "ArrowLeft") prevBtn.click();
+    if (e.key === "ArrowRight") nextBtn.click();
+  });
+</script>
+
+    <!-- ARTÍCULOS -->
+    <section id="articulos" class="container">
+      <h2 class="section-title">Artículos</h2>
+      <p class="section-lead">Ideas y reflexiones sobre urbanismo</p>
+      <div class="post"><a href="#">Calles como espacios de encuentro</a><div class="small">Junio 2025</div></div>
+      <div class="post"><a href="#">La importancia de los SUDS en ciudades tropicales</a><div class="small">Mayo 2025</div></div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="container">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-lead">Conversemos sobre proyectos o colaboraciones</p>
+      <form action="mailto:correo@ejemplo.com" method="post" enctype="text/plain">
+        <div class="row">
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="Nombre" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="Email" required>
+          </div>
+          <div class="full">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="Mensaje"></textarea>
+          </div>
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> Darío Apolo · Portafolio  
+    <br>
+    <a href="https://www.linkedin.com/in/joseapolog" target="_blank" style="color:var(--brand); text-decoration:none;">
+      Conéctame en LinkedIn
+    </a>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const links = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          links.forEach(a=>a.classList.remove('active'));
+          const active=links.find(a=>a.getAttribute('href')==='#'+entry.target.id);
+          if(active) active.classList.add('active');
+        }
+      });
+    },{threshold:.3});
+    sections.forEach(sec => {if(sec) observer.observe(sec)});
+  </script>
+</body>
+</html>
