@@ -1,180 +1,1001 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portafolio — Darío Apolo</title>
-  <meta name="description" content="Portafolio profesional de Darío Apolo: proyectos urbanos, artículos y contacto." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <!-- FontAwesome para iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dario Apolo | Urbanismo, Planificacion Territorial y Espacio Publico</title>
+  <meta name="description" content="Portafolio profesional de Dario Apolo: arquitectura, urbanismo, planificacion territorial, regeneracion urbana, parques, movilidad activa y documentacion tecnica.">
+  <style>
     :root {
-      --bg: #ffffff;
-      --bg-alt: #f9fafb;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --brand: #2563eb;
-      --brand-dark: #1e40af;
-      --overlay: rgba(0,0,0,.65);
+      color-scheme: light;
+      --ink: #12221d;
+      --muted: #5d6a66;
+      --paper: #f6f7f1;
+      --surface: #ffffff;
+      --soft: #e9eee6;
+      --line: #d7dfd4;
+      --forest: #1f6f5b;
+      --teal: #168a78;
+      --blue: #2f6f93;
+      --gold: #c99a3b;
+      --coral: #d46f4d;
+      --shadow: 0 18px 45px rgba(18, 34, 29, .12);
     }
 
-    * {box-sizing: border-box;}
-    body {margin:0; font-family:'Inter',sans-serif; color:var(--text); background:var(--bg); line-height:1.7;}
-    .container {width:min(1100px,92%); margin-inline:auto;}
-    a {color:inherit}
+    * {
+      box-sizing: border-box;
+    }
 
-    /* Header */
-    header {position:sticky; top:0; background:#fff; border-bottom:1px solid #e5e7eb; z-index:50;}
-    nav {display:flex; justify-content:space-between; align-items:center; padding:1rem 0;}
-    .brand {font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; color:var(--brand); text-decoration:none;}
-    .nav-links {display:flex; gap:2rem;}
-    .nav-links a {text-decoration:none; color:var(--muted); padding:.5rem .8rem; border-radius:6px; transition:.2s;}
-    .nav-links a:hover {background:#f3f4f6; color:var(--brand);}
+    html {
+      scroll-behavior: smooth;
+    }
 
-    /* Hero */
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+
+    body.modal-open,
+    body.nav-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      z-index: 120;
+      background: transparent;
+    }
+
+    .progress__bar {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(215, 223, 212, .82);
+      background: rgba(246, 247, 241, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 1px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 650;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      border-radius: 8px;
+      color: #2f3e39;
+      font-size: .94rem;
+      font-weight: 720;
+      padding: 10px 12px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: var(--soft);
+      color: var(--forest);
+      outline: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+    }
+
     .hero {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 80vh;
-      text-align: center;
-      color: white;
-      background: url("img/perfil1.png") no-repeat;
+      min-height: 78svh;
+      isolation: isolate;
+      color: #fff;
+      background-image:
+        linear-gradient(90deg, rgba(5, 18, 15, .90), rgba(5, 18, 15, .50) 46%, rgba(5, 18, 15, .14)),
+        url("render1_1%20-%20Foto.jpg");
+      background-position: center;
       background-size: cover;
-      background-position: 20% top; /* desplaza tu cara a la izquierda */
     }
 
-    .hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(to right, rgba(0,0,0,0.3), rgba(37,99,235,0.15)), /* degradado dinámico */
-    url("img/perfil1.png") no-repeat;
-  background-size: cover;
-  background-position: 20% top;
-  z-index: 0;
-}
-    .hero > * {
-      position: relative;
-      z-index: 2;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 38%;
+      z-index: -1;
+      background: linear-gradient(0deg, rgba(5, 18, 15, .62), transparent);
+    }
+
+    .hero__content {
+      display: grid;
+      min-height: 78svh;
+      align-content: center;
+      gap: 30px;
+      padding: 84px 0 62px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, .34);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .11);
+      color: #f5f7f1;
+      font-size: .78rem;
+      font-weight: 800;
+      padding: 8px 12px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(201, 154, 59, .20);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-block: 0;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 1rem;
+      max-width: 900px;
+      font-size: 5rem;
+      line-height: .95;
+      letter-spacing: 0;
     }
 
-    .hero p {
-      max-width: 650px;
-      margin: 0 auto 1.5rem;
-      font-size: 1.1rem;
+    .hero__lead {
+      max-width: 760px;
+      color: rgba(255, 255, 255, .88);
+      font-size: 1.2rem;
     }
 
-    .buttons {
+    .hero__actions,
+    .cta-actions {
       display: flex;
-      gap: 1rem;
-      justify-content: center;
       flex-wrap: wrap;
+      gap: 12px;
     }
 
     .btn {
-      padding: 0.9rem 1.5rem;
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 820;
+      padding: 12px 16px;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .btn--primary {
+      background: var(--gold);
+      color: #1d1608;
+    }
+
+    .btn--secondary {
+      border-color: rgba(255, 255, 255, .36);
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn--dark {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .btn--outline {
+      border-color: var(--line);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .hero__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: rgba(255, 255, 255, .78);
+      font-size: .92rem;
+      font-weight: 720;
+    }
+
+    .hero__meta span {
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 999px;
+      background: rgba(4, 17, 14, .30);
+      padding: 7px 10px;
+    }
+
+    .stats-band {
+      border-bottom: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .stat {
+      min-height: 128px;
+      background: var(--surface);
+      padding: 26px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--forest);
+      font-size: 2.15rem;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .72fr) minmax(280px, 1fr);
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      color: var(--forest);
+      font-size: .78rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 8px;
+      font-size: 2.7rem;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .expertise {
+      background: var(--paper);
+    }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .expertise-item,
+    .project-card,
+    .contact-panel,
+    .about-point {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .expertise-item {
+      display: grid;
+      min-height: 235px;
+      align-content: space-between;
+      gap: 24px;
+      padding: 22px;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .expertise-item:hover {
+      border-color: rgba(31, 111, 91, .42);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .expertise-number {
+      color: var(--gold);
+      font-size: .82rem;
+      font-weight: 850;
+    }
+
+    .expertise-item h3 {
+      font-size: 1.2rem;
+      line-height: 1.18;
+    }
+
+    .expertise-item p {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .showcase {
+      background: #101f1a;
+      color: #fff;
+    }
+
+    .showcase .section-kicker {
+      color: #94d4c6;
+    }
+
+    .showcase .section-lead {
+      color: rgba(255, 255, 255, .72);
+    }
+
+    .showcase-layout {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .featured-tabs {
+      display: grid;
+      gap: 10px;
+    }
+
+    .featured-tab {
+      display: grid;
+      gap: 7px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .06);
+      color: #fff;
+      cursor: pointer;
+      padding: 18px;
+      text-align: left;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+
+    .featured-tab:hover,
+    .featured-tab.is-active {
+      border-color: rgba(201, 154, 59, .82);
+      background: rgba(255, 255, 255, .12);
+      transform: translateX(4px);
+    }
+
+    .featured-tab span {
+      color: #94d4c6;
+      font-size: .75rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .featured-tab strong {
+      font-size: 1.08rem;
+      line-height: 1.18;
+    }
+
+    .featured-view {
+      min-height: 520px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 8px;
+      background: #09120f;
+    }
+
+    .featured-image {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    .featured-copy {
+      display: grid;
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .featured-copy p {
+      color: rgba(255, 255, 255, .76);
+    }
+
+    .chips,
+    .project-tags,
+    .modal-tags,
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip,
+    .project-tag,
+    .skill-cloud span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: #3b4a45;
+      font-size: .78rem;
+      font-weight: 800;
+      padding: 7px 10px;
+    }
+
+    .showcase .chip {
+      border-color: rgba(255, 255, 255, .16);
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .84);
+    }
+
+    .projects {
+      background: var(--surface);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper);
+      color: #33423d;
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 820;
+      padding: 10px 14px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.is-active {
+      border-color: var(--forest);
+      background: var(--forest);
+      color: #fff;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      display: grid;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .project-card:hover,
+    .project-card:focus-within {
+      border-color: rgba(31, 111, 91, .45);
+      box-shadow: var(--shadow);
+      transform: translateY(-5px);
+    }
+
+    .project-card__image {
+      aspect-ratio: 1.45 / 1;
+      width: 100%;
+      object-fit: cover;
+      background: var(--soft);
+    }
+
+    .project-card__body {
+      display: grid;
+      gap: 13px;
+      padding: 18px;
+    }
+
+    .project-card h3 {
+      font-size: 1.22rem;
+      line-height: 1.16;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .project-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--forest);
+      font-size: .9rem;
+      font-weight: 850;
+    }
+
+    .process {
+      background: var(--paper);
+    }
+
+    .process-layout {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .process-image {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .about-points {
+      display: grid;
+      gap: 12px;
+    }
+
+    .about-point {
+      padding: 20px;
+    }
+
+    .about-point h3 {
+      font-size: 1.12rem;
+      margin-bottom: 8px;
+    }
+
+    .about-point p {
+      color: var(--muted);
+    }
+
+    .contact {
+      background: #f1f4eb;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      padding: 34px;
+    }
+
+    .contact-panel h2 {
+      font-size: 2.35rem;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      color: #23332e;
+      font-weight: 780;
+      padding: 12px 0;
+    }
+
+    .site-footer {
+      background: #101f1a;
+      color: rgba(255, 255, 255, .72);
+      padding: 30px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: .92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(7, 17, 14, .78);
+      backdrop-filter: blur(14px);
+    }
+
+    .modal[aria-hidden="false"] {
+      display: flex;
+    }
+
+    .modal-dialog {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(280px, 1.08fr) minmax(260px, .92fr);
+      width: min(1120px, 100%);
+      max-height: min(780px, 92svh);
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, .34);
+    }
+
+    .modal-media {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 520px;
+      background: #08120f;
+    }
+
+    .modal-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: contain;
+    }
+
+    .modal-thumbs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      padding: 10px;
+      scrollbar-width: none;
+    }
+
+    .modal-thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .modal-thumb {
+      flex: 0 0 86px;
+      height: 58px;
+      overflow: hidden;
+      border: 2px solid transparent;
       border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
     }
 
-    .btn.primary { background: #2563eb; color: white; }
-    .btn.secondary { background: #f3f4f6; color: #2563eb; }
-    .btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
-    .btn {
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.3);
-}
-.card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-.contact-icons a {
-  background: #f3f4f6;
-  border-radius: 50%;
-  padding: 12px;
-  transition: 0.3s;
-}
-.contact-icons a:hover {
-  background: var(--brand);
-  color: white;
-}
-footer {
-  background: linear-gradient(135deg, #111827, #1f2937);
-}
-
-    /* Secciones */
-    section {padding:64px 0;}
-    .section-title {font-size:1.8rem; text-align:center; margin:0 0 .5rem;}
-    .section-lead {color:var(--muted); text-align:center; margin:0 0 2rem;}
-
-    /* Proyectos (full width) */
-    .fullwidth {width:100%; padding:80px 0; background:var(--bg-alt);}
-    .fullwidth .grid {display:grid; gap:32px; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); width:100%; padding-inline:clamp(16px,5vw,64px);}
-
-    .card {background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); overflow:hidden; transition:.2s; cursor:pointer;}
-    .card:hover {transform:translateY(-4px); box-shadow:0 10px 22px rgba(0,0,0,.12);}
-    .card img {width:100%; height:190px; object-fit:cover; display:block;}
-    .card h3 {margin:.8rem; font-size:1.1rem;}
-
-    /* Contacto */
-    .contact-buttons {text-align:center; margin-top:2rem;}
-    .contact-buttons a {display:inline-block; margin:10px; padding:12px 20px; border-radius:8px; font-weight:600; text-decoration:none; color:#fff;}
-    .whatsapp {background:#25D366;}
-    .email {background:var(--brand);}
-    .contact-icons {margin-top:2rem; text-align:center; font-size:2rem;}
-    .contact-icons a {margin:0 12px; color:var(--muted); transition:.2s;}
-    .contact-icons a:hover {color:var(--brand);}
-
-    /* Footer */
-    footer {background:#111827; color:#d1d5db; text-align:center; padding:2rem 1rem; font-size:.9rem;}
-    footer a {color:#60a5fa; text-decoration:none;}
-    footer a:hover {text-decoration:underline;}
-
-    /* Lightbox personalizado */
-    body.no-scroll {overflow:hidden;}
-    .lb {display:none; position:fixed; inset:0; background:var(--overlay); backdrop-filter: blur(3px); z-index:1000; align-items:center; justify-content:center;}
-    .lb[aria-hidden="false"] {display:flex;}
-    .lb-dialog {position:relative; width:min(95vw, 1100px); max-height:90vh; background:#0b0b0b; border-radius:14px; padding:10px; display:flex; align-items:center; justify-content:center; box-shadow:0 20px 60px rgba(0,0,0,.5);}
-    .lb-figure {margin:0; width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;}
-    .lb-img {max-width:100%; max-height:75vh; border-radius:10px; display:block; object-fit:contain; background:#000;}
-    .lb-cap {color:#e5e7eb; font-size:.95rem; text-align:center; min-height:1.2em;}
-
-    .lb-btn {position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); color:#fff; border:none; width:46px; height:46px; border-radius:999px; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s;}
-    .lb-btn:hover {background:rgba(255,255,255,.22);}
-    .lb-prev {left:12px;}
-    .lb-next {right:12px;}
-    .lb-close {position:absolute; top:10px; right:10px; width:42px; height:42px; border-radius:999px; border:none; cursor:pointer; background:rgba(255,255,255,.12); color:#fff; font-size:22px;}
-    .lb-hint {position:absolute; bottom:8px; right:12px; color:#9ca3af; font-size:.8rem;}
-
-    @media (max-width: 640px) {
-      .lb-dialog {width:96vw; padding:8px;}
-      .lb-btn {width:40px; height:40px; font-size:20px;}
-      .lb-img {max-height:70vh;}
+    .modal-thumb.is-active {
+      border-color: var(--gold);
     }
-      </style>
+
+    .modal-thumb img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      display: grid;
+      align-content: start;
+      gap: 18px;
+      overflow-y: auto;
+      padding: 34px;
+    }
+
+    .modal-kicker {
+      color: var(--forest);
+      font-size: .78rem;
+      font-weight: 860;
+      text-transform: uppercase;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      line-height: 1.08;
+    }
+
+    .modal-meta {
+      color: var(--muted);
+      font-weight: 760;
+    }
+
+    .modal-content p {
+      color: var(--muted);
+    }
+
+    .modal-nav,
+    .modal-close {
+      position: absolute;
+      z-index: 2;
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      border-radius: 999px;
+      background: rgba(8, 18, 15, .74);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .modal-close {
+      top: 14px;
+      right: 14px;
+      font-size: 1.35rem;
+    }
+
+    .modal-prev,
+    .modal-next {
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+    }
+
+    .modal-prev {
+      left: 14px;
+    }
+
+    .modal-next {
+      left: calc(54% - 58px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero h1 {
+        font-size: 3.65rem;
+      }
+
+      .section-head,
+      .showcase-layout,
+      .process-layout,
+      .contact-panel,
+      .modal-dialog {
+        grid-template-columns: 1fr;
+      }
+
+      .stats,
+      .expertise-grid,
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featured-view {
+        min-height: 0;
+      }
+
+      .modal-dialog {
+        overflow-y: auto;
+      }
+
+      .modal-media {
+        min-height: 390px;
+      }
+
+      .modal-media img {
+        min-height: 320px;
+      }
+
+      .modal-next {
+        left: auto;
+        right: 14px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .nav-toggle {
+        display: inline-block;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 74px 14px auto;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        padding: 10px;
+      }
+
+      body.nav-open .nav-links {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px;
+      }
+
+      .hero {
+        min-height: 72svh;
+        background-position: 44% center;
+      }
+
+      .hero__content {
+        min-height: 72svh;
+        padding-top: 54px;
+      }
+
+      .hero h1 {
+        font-size: 2.45rem;
+      }
+
+      .hero__lead {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .stats,
+      .expertise-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        min-height: auto;
+      }
+
+      .featured-image {
+        height: 270px;
+      }
+
+      .contact-panel,
+      .modal-content {
+        padding: 22px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
+  <div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+  <header class="site-header">
     <div class="container">
-      <nav>
-        <a class="brand" href="#inicio">Darío Apolo</a>
-        <div class="nav-links">
-          <a href="conoceme.html">Conóceme</a>
+      <nav class="nav" aria-label="Navegacion principal">
+        <a class="brand" href="#inicio" aria-label="Inicio">
+          Dar&iacute;o Apolo
+          <span>Arquitectura + Urbanismo</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
           <a href="#proyectos">Proyectos</a>
-          <a href="https://www.linkedin.com/in/joseapolog" target="_blank">Artículos</a>
+          <a href="#metodo">Metodo</a>
+          <a href="conoceme.html">Con&oacute;ceme</a>
+          <a href="cv-dario-apolo.pdf.pdf" target="_blank" rel="noreferrer">CV</a>
           <a href="#contacto">Contacto</a>
         </div>
       </nav>
@@ -182,218 +1003,503 @@ footer {
   </header>
 
   <main id="inicio">
-    <!-- HERO -->
     <section class="hero">
-      <h1>Hola, soy <strong>Darío Apolo</strong></h1>
-      <p>Urbanista y Diseñador de Proyectos Públicos. Especialista en Planificación del Territorio, Regeneración Urbana, Espacio Público y Movilidad Activa.</p>
-      <div class="buttons">
-        <a class="btn primary" href="#proyectos">Ver proyectos</a>
-        <a class="btn secondary" href="conoceme.html">Conóceme</a>
-        <a class="btn primary" href="https://www.linkedin.com/in/joseapolog" target="_blank">Ver artículos</a>
+      <div class="container hero__content">
+        <div class="eyebrow">Portafolio profesional</div>
+        <h1>Dise&ntilde;o urbano, planificaci&oacute;n territorial y espacios p&uacute;blicos listos para ejecutarse.</h1>
+        <p class="hero__lead">Soy Dar&iacute;o Apolo, arquitecto urbanista y mag&iacute;ster en planificaci&oacute;n del territorio. Conecto lectura territorial, dise&ntilde;o urbano, documentaci&oacute;n AEC, gesti&oacute;n p&uacute;blica y comunicaci&oacute;n visual para formular proyectos urbanos con valor social y t&eacute;cnico.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn--secondary" href="https://www.linkedin.com/in/joseapolog" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn btn--secondary" href="mailto:joseapolo1996@gmail.com">Escribir correo</a>
+        </div>
+        <div class="hero__meta" aria-label="Especialidades">
+          <span>Urbanismo</span>
+          <span>Planificaci&oacute;n territorial</span>
+          <span>GIS / SIG</span>
+          <span>Administraci&oacute;n de contratos</span>
+        </div>
       </div>
     </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="fullwidth">
-      <h2 class="section-title">Proyectos</h2>
-      <p class="section-lead">Selección de proyectos destacados</p>
-      <div class="grid">
-        <article class="card" data-gallery="bicentenario">
-          <img src="img/plaza1.jpg" alt="Plaza Bicentenario — vista general">
-          <h3>Plaza Bicentenario</h3>
-        </article>
-        <article class="card" data-gallery="suds">
-          <img src="img/suds1.jpg" alt="Corredor Ecológico — vista general">
-          <h3>Corredor Ecológico</h3>
-        </article>
-        <article class="card" data-gallery="inter">
-          <img src="img/inter1.jpg" alt="Intersección Av. 25 de Junio — vista general">
-          <h3>Regeneraciones Urbanas</h3>
-        </article>
-        <article class="card" data-gallery="parques">
-          <img src="img/parque1.jpg" alt="Parques Urbanos — zona infantil">
-          <h3>Parques Urbanos</h3>
-        </article>
+    <div class="stats-band">
+      <div class="container stats">
+        <div class="stat">
+          <strong>20+</strong>
+          <span>Parques, plazas y regeneraciones urbanas</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span>Lineas fuertes: territorio, espacio publico, movilidad y AEC</span>
+        </div>
+        <div class="stat">
+          <strong>360</strong>
+          <span>Vision completa: campo, diseno, presupuesto y presentacion</span>
+        </div>
+        <div class="stat">
+          <strong>INT</strong>
+          <span>Perfil preparado para oportunidades internacionales</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="expertise" id="valor">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Valor profesional</span>
+            <h2 class="section-title">Un perfil h&iacute;brido para proyectos urbanos complejos.</h2>
+          </div>
+          <p class="section-lead">El sitio prioriza lo que un reclutador o cliente necesita ver: criterio urbano, producci&oacute;n t&eacute;cnica, manejo de campo y capacidad de comunicar proyectos de inversi&oacute;n.</p>
+        </div>
+        <div class="expertise-grid">
+          <article class="expertise-item reveal">
+            <span class="expertise-number">01</span>
+            <div>
+              <h3>Dise&ntilde;o urbano y espacio p&uacute;blico</h3>
+              <p>Parques, plazas, equipamientos y regeneraci&oacute;n urbana con enfoque de accesibilidad, uso comunitario y calidad espacial.</p>
+            </div>
+          </article>
+          <article class="expertise-item reveal">
+            <span class="expertise-number">02</span>
+            <div>
+              <h3>Planificaci&oacute;n territorial y SIG</h3>
+              <p>Lectura urbana, mapeo, diagn&oacute;stico territorial y soporte GIS/QGIS para priorizar intervenciones y tomar decisiones.</p>
+            </div>
+          </article>
+          <article class="expertise-item reveal">
+            <span class="expertise-number">03</span>
+            <div>
+              <h3>Documentaci&oacute;n AEC</h3>
+              <p>CAD, modelado 3D, renders, laminas, fichas tecnicas y material de formulaci&oacute;n para proyectos p&uacute;blicos.</p>
+            </div>
+          </article>
+          <article class="expertise-item reveal">
+            <span class="expertise-number">04</span>
+            <div>
+              <h3>Gesti&oacute;n y control de obra</h3>
+              <p>Seguimiento de cronogramas, fiscalizaci&oacute;n, administraci&oacute;n contractual, contratistas, recursos y documentaci&oacute;n.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="container">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-lead">Puedes escribirme directamente por WhatsApp, correo electrónico o seguirme en mis redes.</p>
-
-      <div class="contact-buttons">
-        <a class="whatsapp" href="https://wa.me/593981343006?text=Hola%20Dar%C3%ADo,%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank">
-          <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
-        </a>
-        <a class="email" href="mailto:joseapolo1996@gmail.com">
-          <i class="fas fa-envelope"></i> Enviar un correo
-        </a>
+    <section class="showcase" aria-labelledby="showcase-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Casos destacados</span>
+            <h2 class="section-title" id="showcase-title">Proyectos con narrativa, imagen y evidencia t&eacute;cnica.</h2>
+          </div>
+          <p class="section-lead">La experiencia muestra cada obra como caso profesional: rol, herramientas, valor urbano y una galeria visual construida con tus propios archivos.</p>
+        </div>
+        <div class="showcase-layout">
+          <div class="featured-tabs" id="featuredTabs" aria-label="Seleccion de proyectos destacados"></div>
+          <article class="featured-view" aria-live="polite">
+            <img class="featured-image" id="featuredImage" src="render1_1%20-%20Foto.jpg" alt="">
+            <div class="featured-copy">
+              <div class="chips" id="featuredChips"></div>
+              <h3 id="featuredTitle">Regeneraci&oacute;n del Centro Urbano de Machala</h3>
+              <p id="featuredText"></p>
+              <button class="btn btn--primary" type="button" id="featuredButton">Explorar caso</button>
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="contact-icons">
-        <a href="https://www.linkedin.com/in/joseapolog" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://wa.me/593981343006" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:joseapolo1996@gmail.com" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+    <section class="projects" id="proyectos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Portafolio</span>
+            <h2 class="section-title">Seleccion de proyectos urbanos.</h2>
+          </div>
+          <p class="section-lead">Filtros por enfoque para que el recorrido sea rapido: regeneraci&oacute;n urbana, parques, movilidad, sostenibilidad y equipamientos.</p>
+        </div>
+
+        <div class="filters reveal" aria-label="Filtros de proyectos">
+          <button class="filter-btn is-active" type="button" data-filter="todos">Todos</button>
+          <button class="filter-btn" type="button" data-filter="urbanismo">Urbanismo</button>
+          <button class="filter-btn" type="button" data-filter="parques">Parques</button>
+          <button class="filter-btn" type="button" data-filter="movilidad">Movilidad</button>
+          <button class="filter-btn" type="button" data-filter="sostenibilidad">Sostenibilidad</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid"></div>
+      </div>
+    </section>
+
+    <section class="process" id="metodo">
+      <div class="container process-layout">
+        <img class="process-image reveal" src="perfil.png" alt="Retrato profesional de Dario Apolo" loading="lazy">
+        <div>
+          <span class="section-kicker">Metodo de trabajo</span>
+          <h2 class="section-title">Del diagnostico territorial a la presentaci&oacute;n ejecutiva.</h2>
+          <div class="about-points">
+            <article class="about-point reveal">
+              <h3>1. Lectura urbana y levantamiento</h3>
+              <p>Informaci&oacute;n de campo, mapeo SIG, identificaci&oacute;n de conflictos, oportunidades de espacio p&uacute;blico y lectura de movilidad.</p>
+            </article>
+            <article class="about-point reveal">
+              <h3>2. Propuesta y documentaci&oacute;n</h3>
+              <p>Dise&ntilde;o conceptual, planos CAD, modelado, renders, laminas, fichas, presupuestos base y narrativa de proyecto.</p>
+            </article>
+            <article class="about-point reveal">
+              <h3>3. Control y comunicaci&oacute;n</h3>
+              <p>Seguimiento tecnico, coordinaci&oacute;n con contratistas, revision de avances, reportes y presentaciones para decisores.</p>
+            </article>
+          </div>
+          <div class="skill-cloud" aria-label="Herramientas y capacidades">
+            <span>AutoCAD</span>
+            <span>QGIS</span>
+            <span>SketchUp</span>
+            <span>Lumion</span>
+            <span>V-Ray</span>
+            <span>BIM</span>
+            <span>Photoshop</span>
+            <span>Illustrator</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <span class="section-kicker">Contacto</span>
+            <h2>Disponible para colaboraciones, consultorias y oportunidades internacionales.</h2>
+            <p>Arquitectura, planificaci&oacute;n territorial, urbanismo, gesti&oacute;n de proyectos, documentaci&oacute;n t&eacute;cnica y apoyo tecnico-comercial para propuestas urbanas.</p>
+            <div class="cta-actions" style="margin-top: 22px;">
+              <a class="btn btn--dark" href="mailto:joseapolo1996@gmail.com">Enviar correo</a>
+              <a class="btn btn--outline" href="https://wa.me/593981343006" target="_blank" rel="noreferrer">WhatsApp</a>
+              <a class="btn btn--outline" href="cv-dario-apolo.pdf.pdf" target="_blank" rel="noreferrer">Ver CV</a>
+            </div>
+          </div>
+          <div class="contact-list" aria-label="Canales de contacto">
+            <a class="contact-link" href="mailto:joseapolo1996@gmail.com"><span>Email</span><span>joseapolo1996@gmail.com</span></a>
+            <a class="contact-link" href="https://www.linkedin.com/in/joseapolog" target="_blank" rel="noreferrer"><span>LinkedIn</span><span>/in/joseapolog</span></a>
+            <a class="contact-link" href="https://wa.me/593981343006" target="_blank" rel="noreferrer"><span>WhatsApp</span><span>+593 981 343 006</span></a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    © <span id="year"></span> Darío Apolo · Portafolio
-    <br>
-    <a href="https://www.linkedin.com/in/joseapolog" target="_blank">LinkedIn</a> ·
-    <a href="mailto:joseapolo1996@gmail.com">Correo</a>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Dar&iacute;o Apolo. Portafolio de arquitectura, urbanismo y planificaci&oacute;n territorial.</p>
+      <div class="footer-links">
+        <a href="#proyectos">Proyectos</a>
+        <a href="conoceme.html">Con&oacute;ceme</a>
+        <a href="mailto:joseapolo1996@gmail.com">Correo</a>
+      </div>
+    </div>
   </footer>
 
-  <!-- LIGHTBOX PERSONALIZADO -->
-  <div id="lightbox" class="lb" aria-hidden="true">
-    <div class="lb-dialog" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
-      <button class="lb-close" type="button" aria-label="Cerrar (Esc)">&times;</button>
-      <button class="lb-btn lb-prev" type="button" aria-label="Anterior">&#10094;</button>
-
-      <figure class="lb-figure">
-        <img id="lb-img" class="lb-img" src="" alt="">
-        <figcaption id="lb-cap" class="lb-cap"></figcaption>
-      </figure>
-
-      <button class="lb-btn lb-next" type="button" aria-label="Siguiente">&#10095;</button>
-      <div class="lb-hint">Usa ← → para navegar, Esc para cerrar</div>
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="Cerrar">&times;</button>
+      <button class="modal-nav modal-prev" type="button" aria-label="Imagen anterior">&#8249;</button>
+      <button class="modal-nav modal-next" type="button" aria-label="Imagen siguiente">&#8250;</button>
+      <div class="modal-media">
+        <img id="modalImage" alt="">
+        <div class="modal-thumbs" id="modalThumbs"></div>
+      </div>
+      <div class="modal-content">
+        <span class="modal-kicker" id="modalKicker"></span>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-meta" id="modalMeta"></p>
+        <div id="modalBody"></div>
+        <div class="modal-tags" id="modalTags"></div>
+      </div>
     </div>
   </div>
 
   <script>
-    // Año dinámico
+    const projects = [
+      {
+        id: "centro-machala",
+        category: "urbanismo",
+        type: "Regeneracion urbana",
+        title: "Regeneraci&oacute;n del Centro Urbano de Machala",
+        cover: "render1_1%20-%20Foto.jpg",
+        role: "Diseno urbano, renders, CAD, material tecnico y formulacion",
+        summary: "Revitalizacion del centro urbano con enfoque de caminabilidad, sombra, activacion comercial y espacio publico de calidad.",
+        impact: "Conecta identidad local, dinamica comercial, seguridad peatonal y documentacion lista para toma de decisiones municipales.",
+        tags: ["Urban Core", "Public Space", "CAD", "Renders", "Municipal Projects"],
+        gallery: ["render1_1%20-%20Foto.jpg", "render1_2%20-%20Foto.jpg", "render1_3%20-%20Foto.jpg", "render1_4%20-%20Foto.jpg", "665.jpg"]
+      },
+      {
+        id: "cdla-machala",
+        category: "parques",
+        type: "Parque innovador",
+        title: "Cdla. Machala - Parque innovador",
+        cover: "img/parque1.jpg",
+        role: "Soporte de diseno, revision de campo, renders y fichas tecnicas",
+        summary: "Proyecto de parque barrial con areas de encuentro, sombra, juegos, permanencia y criterios de accesibilidad.",
+        impact: "Aporta una experiencia publica contemporanea: mobiliario, vegetacion, seguridad visual y espacios flexibles para comunidad.",
+        tags: ["Parks", "Civic Equipment", "Accessibility", "Community Use"],
+        gallery: ["img/parque1.jpg", "img/parque2.jpg", "img/parque3.jpg", "img/parque4.jpg", "img/parque7.jpg", "img/parque8.jpg", "img/parque9.jpg"]
+      },
+      {
+        id: "parques-equipamientos",
+        category: "parques",
+        type: "Espacio publico",
+        title: "Parques y Equipamientos Urbanos de Machala",
+        cover: "img/parque7.jpg",
+        role: "Documentacion tecnica, modelado 3D, renders y apoyo de formulacion",
+        summary: "Portafolio de parques, equipamientos civicos y mejoras barriales para fortalecer el uso comunitario del espacio publico.",
+        impact: "Mejora la calidad del espacio publico mediante accesibilidad, lectura de necesidades locales y material tecnico para inversion.",
+        tags: ["Parks", "Public Space", "Urban Regeneration", "Technical Documentation"],
+        gallery: ["img/parque7.jpg", "img/parque8.jpg", "img/parque9.jpg", "img/parque6.jpg", "img/parque2.jpg", "img/parque3.jpg"]
+      },
+      {
+        id: "plaza-bicentenario",
+        category: "urbanismo",
+        type: "Plaza y equipamiento",
+        title: "Plaza Bicentenario",
+        cover: "img/plaza1.jpg",
+        role: "Renders, visualizacion, presentacion y soporte tecnico",
+        summary: "Intervencion urbana con espacios de estancia, arbolado, recorridos peatonales y relacion con equipamientos.",
+        impact: "Comunica la transformacion urbana a traves de imagenes claras, criterios de uso publico y lectura del entorno.",
+        tags: ["Plaza", "Civic Space", "Landscape", "Visualization"],
+        gallery: ["img/plaza1.jpg", "img/plaza2.jpg", "img/plaza3.jpg", "img/plaza5.jpg"]
+      },
+      {
+        id: "interseccion-junio",
+        category: "movilidad",
+        type: "Movilidad activa",
+        title: "Intersecci&oacute;n Av. 25 de Junio",
+        cover: "Interseccion.jpg",
+        role: "Diseno vial urbano, paisajismo, paradas y visualizacion",
+        summary: "Propuesta de interseccion con cruces mas legibles, movilidad activa, franjas verdes y mejora de experiencia peatonal.",
+        impact: "Integra seguridad vial, paisaje urbano, transporte publico y lectura de flujos para ordenar un nodo estrategico.",
+        tags: ["Mobility", "Walkability", "Bike Lane", "Bus Stop", "Urban Landscape"],
+        gallery: ["Interseccion.jpg", "img/inter1.jpg", "img/inter2.jpg", "img/busstop.jpg", "img/4.jpg", "img/5.jpg", "img/6.jpg", "img/7.jpg"]
+      },
+      {
+        id: "suds-corredor",
+        category: "sostenibilidad",
+        type: "Infraestructura verde",
+        title: "Corredor ecol&oacute;gico y SUDS",
+        cover: "img/SUDS.jpg",
+        role: "Conceptualizacion, laminas tecnicas y comunicacion de estrategia",
+        summary: "Estrategia de drenaje urbano sostenible y corredor verde para mejorar absorcion, paisaje y confort ambiental.",
+        impact: "Traduce soluciones ambientales en criterios urbanos comprensibles para equipos tecnicos, comunidad y decisores.",
+        tags: ["SUDS", "Green Infrastructure", "Climate Resilience", "Landscape"],
+        gallery: ["img/SUDS.jpg", "img/suds1.jpg"]
+      }
+    ];
+
+    const featuredIds = ["centro-machala", "interseccion-junio", "cdla-machala", "suds-corredor"];
+    const featuredProjects = featuredIds.map((id) => projects.find((project) => project.id === id));
+    const projectGrid = document.getElementById("projectGrid");
+    const modal = document.getElementById("projectModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalThumbs = document.getElementById("modalThumbs");
+    const modalKicker = document.getElementById("modalKicker");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMeta = document.getElementById("modalMeta");
+    const modalBody = document.getElementById("modalBody");
+    const modalTags = document.getElementById("modalTags");
+    const featuredTabs = document.getElementById("featuredTabs");
+    const featuredImage = document.getElementById("featuredImage");
+    const featuredTitle = document.getElementById("featuredTitle");
+    const featuredText = document.getElementById("featuredText");
+    const featuredChips = document.getElementById("featuredChips");
+    const featuredButton = document.getElementById("featuredButton");
+    const progressBar = document.getElementById("progressBar");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    let activeFilter = "todos";
+    let activeProject = projects[0];
+    let activeImageIndex = 0;
+    let activeFeatured = featuredProjects[0];
+
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // --- Galerías por proyecto (ajusta rutas/nombres si hace falta) ---
-    const galleries = {
-      bicentenario: [
-        { src: 'img/plaza1.jpg', cap: 'Plaza Bicentenario — Vista general' },
-        { src: 'img/plaza2.jpg', cap: 'Plaza Bicentenario — Detalle' },
-        { src: 'img/plaza3.jpg', cap: 'Plaza Bicentenario — Áreas verdes' },
-               { src: 'img/plaza5.jpg', cap: 'Plaza Bicentenario — Áreas verdes' },
-      ],
-      suds: [
-        { src: 'img/suds1.jpg', cap: 'Corredor Ecológico — Vista general' },
-        { src: 'img/suds2.jpg', cap: 'Corredor Ecológico — Detalle' }
-      ],
-      inter: [
-        { src: 'img/inter1.jpg', cap: 'Intersección — Vista general' },
-        { src: 'img/inter2.jpg', cap: 'Intersección — Diseño paisajístico' },
-         { src: 'img/interseccion.jpg', cap: 'Intersección — Diseño paisajístico' },
-         { src: 'img/busstop.jpg', cap: 'Intersección — Parada de bus' },
-         { src: 'img/4.jpg', cap: 'Intersección — Parada de bus' },
-         { src: 'img/5.jpg', cap: 'Urbanismo — Regeneracion Urbana' },
-         { src: 'img/6.jpg', cap: 'Urbanismo — Paisajismo' },
-         { src: 'img/7.jpg', cap: 'Urbanismo — Xeropaisajismo' },
-      ],
-      parques: [
-        { src: 'img/parque1.jpg', cap: 'Parques Urbanos — Zona infantil' },
-        { src: 'img/parque2.jpg', cap: 'Parques Urbanos — Juegos sostenibles' },
-        { src: 'img/parque3.jpg', cap: 'Parques Urbanos — Mobiliario urbano' }, 
-        { src: 'img/parque4.jpg', cap: 'Parques Urbanos — Mobiliario urbano' }, 
-        { src: 'img/parque6.jpg', cap: 'Parques Urbanos — Mobiliario urbano' },
-        { src: 'img/parque7.jpg', cap: 'Parques Urbanos — Parque Inclusivo' },
-        { src: 'img/parque8.jpg', cap: 'Parques Urbanos — Parque Inclusivo' },
-        { src: 'img/parque9.jpg', cap: 'Parques Urbanos — Parque Inclusivo' },
-      ]
-    };
+    function renderProjects() {
+      const visibleProjects = activeFilter === "todos"
+        ? projects
+        : projects.filter((project) => project.category === activeFilter);
 
-    // Estado del visor
-    let currentKey = null;
-    let currentIndex = 0;
+      projectGrid.innerHTML = visibleProjects.map((project) => `
+        <article class="project-card reveal" tabindex="0" role="button" data-project="${project.id}">
+          <img class="project-card__image" src="${project.cover}" alt="${project.title}" loading="lazy">
+          <div class="project-card__body">
+            <div class="project-tags">
+              <span class="project-tag">${project.type}</span>
+            </div>
+            <h3>${project.title}</h3>
+            <p>${project.summary}</p>
+            <div class="project-card__footer">
+              <span>${project.role}</span>
+              <span>Ver caso</span>
+            </div>
+          </div>
+        </article>
+      `).join("");
 
-    // Elementos del visor
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lb-img');
-    const lbCap = document.getElementById('lb-cap');
-    const btnPrev = document.querySelector('.lb-prev');
-    const btnNext = document.querySelector('.lb-next');
-    const btnClose = document.querySelector('.lb-close');
-
-    // Abrir
-    function openLightbox(key, index = 0) {
-      if (!galleries[key]) return;
-      currentKey = key;
-      currentIndex = index;
-      updateLightbox();
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('no-scroll');
-      // Enfocar para accesibilidad
-      btnClose.focus();
-      // Listener teclado
-      document.addEventListener('keydown', onKey);
+      projectGrid.querySelectorAll(".project-card").forEach((card) => {
+        card.addEventListener("click", () => openProject(card.dataset.project));
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openProject(card.dataset.project);
+          }
+        });
+      });
+      observeReveals();
     }
 
-    // Cerrar
-    function closeLightbox() {
-      lb.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-      document.removeEventListener('keydown', onKey);
-      currentKey = null;
-      currentIndex = 0;
+    function renderFeaturedTabs() {
+      featuredTabs.innerHTML = featuredProjects.map((project) => `
+        <button class="featured-tab" type="button" data-featured="${project.id}">
+          <span>${project.type}</span>
+          <strong>${project.title}</strong>
+        </button>
+      `).join("");
+
+      featuredTabs.querySelectorAll(".featured-tab").forEach((button) => {
+        button.addEventListener("click", () => setFeatured(button.dataset.featured));
+      });
+      setFeatured(activeFeatured.id);
     }
 
-    // Actualizar imagen/caption
-    function updateLightbox() {
-      const item = galleries[currentKey][currentIndex];
-      lbImg.src = item.src;
-      lbImg.alt = item.cap || '';
-      lbCap.textContent = item.cap || '';
-      // Preload vecinos
-      preloadNeighbor(-1);
-      preloadNeighbor(+1);
-      // Botones habilitados (siempre ciclamos)
-      btnPrev.disabled = false;
-      btnNext.disabled = false;
+    function setFeatured(id) {
+      activeFeatured = projects.find((project) => project.id === id) || projects[0];
+      featuredImage.src = activeFeatured.cover;
+      featuredImage.alt = activeFeatured.title;
+      featuredTitle.innerHTML = activeFeatured.title;
+      featuredText.innerHTML = activeFeatured.impact;
+      featuredChips.innerHTML = activeFeatured.tags.slice(0, 4).map((tag) => `<span class="chip">${tag}</span>`).join("");
+      featuredButton.onclick = () => openProject(activeFeatured.id);
+
+      featuredTabs.querySelectorAll(".featured-tab").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.featured === activeFeatured.id);
+      });
     }
 
-    function preloadNeighbor(delta) {
-      const arr = galleries[currentKey];
-      const i = (currentIndex + delta + arr.length) % arr.length;
-      const img = new Image();
-      img.src = arr[i].src;
+    function openProject(id) {
+      activeProject = projects.find((project) => project.id === id) || projects[0];
+      activeImageIndex = 0;
+      modalKicker.innerHTML = activeProject.type;
+      modalTitle.innerHTML = activeProject.title;
+      modalMeta.innerHTML = activeProject.role;
+      modalBody.innerHTML = `
+        <p>${activeProject.summary}</p>
+        <p><strong>Valor profesional:</strong> ${activeProject.impact}</p>
+      `;
+      modalTags.innerHTML = activeProject.tags.map((tag) => `<span class="chip">${tag}</span>`).join("");
+      updateModalImage();
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      document.querySelector(".modal-close").focus();
     }
 
-    function nextImage() {
-      const arr = galleries[currentKey];
-      currentIndex = (currentIndex + 1) % arr.length;
-      updateLightbox();
+    function updateModalImage() {
+      const src = activeProject.gallery[activeImageIndex];
+      modalImage.src = src;
+      modalImage.alt = activeProject.title;
+      modalThumbs.innerHTML = activeProject.gallery.map((image, index) => `
+        <button class="modal-thumb ${index === activeImageIndex ? "is-active" : ""}" type="button" data-index="${index}" aria-label="Ver imagen ${index + 1}">
+          <img src="${image}" alt="">
+        </button>
+      `).join("");
+      modalThumbs.querySelectorAll(".modal-thumb").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeImageIndex = Number(button.dataset.index);
+          updateModalImage();
+        });
+      });
+      preloadImage(activeProject.gallery[(activeImageIndex + 1) % activeProject.gallery.length]);
     }
 
-    function prevImage() {
-      const arr = galleries[currentKey];
-      currentIndex = (currentIndex - 1 + arr.length) % arr.length;
-      updateLightbox();
+    function preloadImage(src) {
+      const image = new Image();
+      image.src = src;
     }
 
-    function onKey(e) {
-      if (lb.getAttribute('aria-hidden') === 'true') return;
-      if (e.key === 'Escape') { closeLightbox(); }
-      else if (e.key === 'ArrowRight') { nextImage(); }
-      else if (e.key === 'ArrowLeft') { prevImage(); }
+    function nextImage(direction) {
+      const length = activeProject.gallery.length;
+      activeImageIndex = (activeImageIndex + direction + length) % length;
+      updateModalImage();
     }
 
-    // Eventos UI visor
-    btnNext.addEventListener('click', nextImage);
-    btnPrev.addEventListener('click', prevImage);
-    btnClose.addEventListener('click', closeLightbox);
+    function closeProject() {
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
 
-    // Cerrar haciendo clic fuera del dialog
-    lb.addEventListener('click', (e) => {
-      const dialog = e.currentTarget.querySelector('.lb-dialog');
-      if (!dialog.contains(e.target)) closeLightbox();
-    });
-
-    // Abrir desde tarjetas
-    document.querySelectorAll('[data-gallery]').forEach(card => {
-      card.addEventListener('click', () => {
-        const key = card.getAttribute('data-gallery');
-        openLightbox(key, 0);
+    document.querySelectorAll("[data-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll("[data-filter]").forEach((item) => {
+          item.classList.toggle("is-active", item.dataset.filter === activeFilter);
+        });
+        renderProjects();
       });
     });
+
+    document.querySelector(".modal-close").addEventListener("click", closeProject);
+    document.querySelector(".modal-prev").addEventListener("click", () => nextImage(-1));
+    document.querySelector(".modal-next").addEventListener("click", () => nextImage(1));
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeProject();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (modal.getAttribute("aria-hidden") === "false") {
+        if (event.key === "Escape") closeProject();
+        if (event.key === "ArrowLeft") nextImage(-1);
+        if (event.key === "ArrowRight") nextImage(1);
+      }
+    });
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        document.body.classList.remove("nav-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = height > 0 ? (scrollTop / height) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .14 });
+
+    function observeReveals() {
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach((element) => {
+        revealObserver.observe(element);
+      });
+    }
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    renderFeaturedTabs();
+    renderProjects();
+    observeReveals();
+    updateProgress();
   </script>
 </body>
 </html>

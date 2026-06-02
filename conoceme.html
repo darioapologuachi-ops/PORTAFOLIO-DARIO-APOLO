@@ -1,335 +1,904 @@
- HEAD
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sobre mí — Darío Apolo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conoceme | Dario Apolo</title>
+  <meta name="description" content="Perfil profesional de Dario Apolo: arquitecto urbanista, planificador territorial, analista de diseno de proyectos publicos y especialista en espacio publico.">
   <style>
     :root {
-      --bg: #f9fafb;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --brand: #2563eb;
+      color-scheme: light;
+      --ink: #12221d;
+      --muted: #5d6a66;
+      --paper: #f6f7f1;
+      --surface: #ffffff;
+      --soft: #e9eee6;
+      --line: #d7dfd4;
+      --forest: #1f6f5b;
+      --teal: #168a78;
+      --blue: #2f6f93;
+      --gold: #c99a3b;
+      --coral: #d46f4d;
+      --shadow: 0 18px 45px rgba(18, 34, 29, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.58;
+      letter-spacing: 0;
     }
 
-    header {
-      background: var(--brand);
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
+    body.nav-open {
+      overflow: hidden;
     }
 
-    header h1 {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
+    img {
+      display: block;
+      max-width: 100%;
     }
 
-    main {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      z-index: 120;
+      background: transparent;
+    }
+
+    .progress__bar {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--gold), var(--coral));
+    }
+
+    .container {
+      width: min(1140px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(215, 223, 212, .82);
+      background: rgba(246, 247, 241, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 24px;
+    }
+
+    .brand {
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 40px;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
+      gap: 1px;
+      font-weight: 800;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 650;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      border-radius: 8px;
+      color: #2f3e39;
+      font-size: .94rem;
+      font-weight: 720;
+      padding: 10px 12px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: var(--soft);
+      color: var(--forest);
+      outline: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 54svh;
+      color: #fff;
+      background-image:
+        linear-gradient(90deg, rgba(7, 17, 14, .90), rgba(7, 17, 14, .46), rgba(7, 17, 14, .18)),
+        url("img/plaza1.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    .hero__content {
+      display: grid;
+      min-height: 54svh;
+      align-content: center;
+      gap: 22px;
+      padding: 74px 0 46px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, .34);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .11);
+      color: #f5f7f1;
+      font-size: .78rem;
+      font-weight: 800;
+      padding: 8px 12px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(201, 154, 59, .20);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-block: 0;
+    }
+
+    .hero h1 {
+      max-width: 820px;
+      font-size: 4.15rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: rgba(255, 255, 255, .86);
+      font-size: 1.14rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 820;
+      padding: 12px 16px;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .btn--primary {
+      background: var(--gold);
+      color: #1d1608;
+    }
+
+    .btn--outline {
+      border-color: var(--line);
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .hero-actions,
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    section {
+      padding: 82px 0;
+    }
+
+    .section-kicker {
+      color: var(--forest);
+      font-size: .78rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 8px;
+      font-size: 2.55rem;
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 42px;
       align-items: start;
     }
 
-    /* Foto */
-    .profile {
-      text-align: center;
+    .profile-photo {
+      position: sticky;
+      top: 98px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
     }
-    .profile img {
+
+    .profile-photo img {
       width: 100%;
-      max-width: 280px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-    .profile h2 {
-      margin-top: 1rem;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--brand);
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
     }
 
-    /* CV contenido */
-    .cv-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .cv-box h3 {
-      color: var(--brand);
-      margin-top: 1rem;
-    }
-    .cv-box ul {
-      margin: 0.5rem 0 1.5rem;
-      padding-left: 20px;
-    }
-    .cv-box li {
-      margin-bottom: 6px;
-    }
-
-    footer {
-      background: #111827;
-      color: #d1d5db;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 40px;
-    }
-    footer a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-    p {
-  text-align: justify;
-}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Sobre mí</h1>
-    <p>Conoce más de Darío Apolo</p>
-  </header>
-
-  <main>
-    <!-- Columna izquierda (Foto + nombre) -->
-    <div class="profile">
-      <img src="img/perfil.jpg" alt="Foto de Darío Apolo">
-      <h2>Darío Apolo</h2>
-      <p><em>Urbanista · Planificador y Diseñador de Proyectos de Obras</em></p>
-    </div>
-
-    <!-- Columna derecha (CV) -->
-    <div class="cv-box">
-      <h3>Perfil</h3>
-      <p>José Darío Apolo Guachizaca, nacido en agosto de 1996 en la ciudad de Machala, Ecuador. Me gradué como arquitecto en la Facultad de Arquitectura y Urbanismo de la Universidad de Guayaquil. Magister en planificación del territorio en la UTPL. 
-Actualmente, me desempeño como Analista de Diseño de Proyectos de Obras de Inversión en el Gobierno Autónomo Descentralizado Municipal de Machala.</p>
-
-<P>Mi trayectoria se ha centrado en contribuir al desarrollo urbanístico de Machala, donde he participado en la planificación y ejecución de proyectos que mejoran la calidad de vida de la comunidad. Mi compromiso con el diseño responsable y sostenible ha sido clave en cada iniciativa en la que participo.
-
-<P></P>Además de mi labor profesional, participo activamente en iniciativas comunitarias que promueven el acceso equitativo a espacios públicos y la preservación del patrimonio cultural de nuestra ciudad.
-
-Con mi trabajo, busco dejar una huella positiva en el paisaje urbano de Machala y servir como ejemplo para futuras generaciones de arquitectos y urbanistas en Ecuador.</p>
-
-      <h3>Experiencia</h3>
-      <ul>
-        <li>Más de 20 proyectos de parques, plazas y regeneraciones urbanas.</li>
-        <li>Fiscalización y Administracion de Contratos Públicos</li>
-        <li>Diseños con criterios de accesibilidad universal y movilidad activa.</li>
-        <li>Propuestas inspiradas en Jane Jacobs, Jan Gehl y Kevin Lynch.</li>
-      </ul>
-
-      <h3>Formación</h3>
-      <ul>
-        <li>Arquitecto  Urbanista en Universidad de Guayaquil</li>
-        <li>Magister en Planificación del territorio en Universidad Técnica Particular de Loja</li>
-      </ul>
-
-      <h3>Habilidades</h3>
-      <ul>
-        <li>Planificación urbana sostenible.</li>
-        <li>Gestión de proyectos de inversión pública.</li>
-        <li>Manejo de AutoCAD, QGIS, Illustrator, Photoshop, Sketchup, Lumion, Vray, BIM.</li>
-      </ul>
-    </div>
-  </main>
-
-  <footer>
-    © <span id="year"></span> Darío Apolo · 
-    <a href="index.html">Volver al inicio</a>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
-=======
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sobre mí — Darío Apolo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f9fafb;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --brand: #2563eb;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    header {
-      background: var(--brand);
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    main {
+    .profile-photo__body {
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      gap: 8px;
+      padding: 18px;
+    }
+
+    .profile-photo__body strong {
+      font-size: 1.18rem;
+    }
+
+    .profile-photo__body span {
+      color: var(--muted);
+      font-weight: 720;
+    }
+
+    .bio {
+      display: grid;
+      gap: 24px;
+    }
+
+    .bio-lead {
+      color: #2f3e39;
+      font-size: 1.18rem;
+    }
+
+    .bio p:not(.bio-lead) {
+      color: var(--muted);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .quick-item,
+    .experience-item,
+    .toolset,
+    .contact-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .quick-item {
+      min-height: 132px;
+      padding: 18px;
+    }
+
+    .quick-item strong {
+      display: block;
+      color: var(--forest);
+      font-size: 1.55rem;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .quick-item span {
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 720;
+    }
+
+    .experience {
+      background: var(--surface);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .72fr) minmax(280px, 1fr);
       gap: 40px;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-      align-items: start;
+      align-items: end;
+      margin-bottom: 34px;
     }
 
-    /* Foto */
-    .profile {
-      text-align: center;
-    }
-    .profile img {
-      width: 100%;
-      max-width: 280px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-    .profile h2 {
-      margin-top: 1rem;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--brand);
+    .section-lead {
+      color: var(--muted);
+      font-size: 1.04rem;
     }
 
-    /* CV contenido */
-    .cv-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-    .cv-box h3 {
-      color: var(--brand);
-      margin-top: 1rem;
-    }
-    .cv-box ul {
-      margin: 0.5rem 0 1.5rem;
-      padding-left: 20px;
-    }
-    .cv-box li {
-      margin-bottom: 6px;
+    .experience-list {
+      display: grid;
+      gap: 14px;
     }
 
-    footer {
-      background: #111827;
-      color: #d1d5db;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 40px;
-    }
-    footer a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
+    .experience-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 22px;
     }
 
-    @media (max-width: 768px) {
-      main {
+    .experience-item time,
+    .experience-item .label {
+      color: var(--forest);
+      font-size: .82rem;
+      font-weight: 860;
+      text-transform: uppercase;
+    }
+
+    .experience-item h3 {
+      font-size: 1.24rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .experience-item p {
+      color: var(--muted);
+    }
+
+    .tools {
+      background: var(--paper);
+    }
+
+    .tools-layout {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .toolset {
+      padding: 24px;
+    }
+
+    .toolset h3 {
+      margin-bottom: 14px;
+    }
+
+    .skill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-cloud span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: #3b4a45;
+      font-size: .82rem;
+      font-weight: 800;
+      padding: 7px 10px;
+    }
+
+    .international {
+      background: #101f1a;
+      color: #fff;
+    }
+
+    .international .section-kicker {
+      color: #94d4c6;
+    }
+
+    .international .section-lead {
+      color: rgba(255, 255, 255, .74);
+    }
+
+    .international-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .international-grid article {
+      min-height: 210px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .06);
+      padding: 22px;
+    }
+
+    .international-grid h3 {
+      margin-bottom: 10px;
+    }
+
+    .international-grid p {
+      color: rgba(255, 255, 255, .74);
+    }
+
+    .contact {
+      background: #f1f4eb;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      padding: 34px;
+    }
+
+    .contact-panel h2 {
+      font-size: 2.25rem;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      color: #23332e;
+      font-weight: 780;
+      padding: 12px 0;
+    }
+
+    .site-footer {
+      background: #101f1a;
+      color: rgba(255, 255, 255, .72);
+      padding: 30px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      font-size: .92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero h1 {
+        font-size: 3.25rem;
+      }
+
+      .profile-layout,
+      .section-head,
+      .tools-layout,
+      .contact-panel {
         grid-template-columns: 1fr;
-        text-align: center;
+      }
+
+      .profile-photo {
+        position: static;
+      }
+
+      .quick-grid,
+      .international-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
-    p {
-  text-align: justify;
-}
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 28px, 1140px);
+      }
+
+      .nav-toggle {
+        display: inline-block;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 74px 14px auto;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        padding: 10px;
+      }
+
+      body.nav-open .nav-links {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 13px;
+      }
+
+      .hero {
+        min-height: 58svh;
+      }
+
+      .hero__content {
+        min-height: 58svh;
+        padding-top: 54px;
+      }
+
+      .hero h1 {
+        font-size: 2.35rem;
+      }
+
+      .hero p,
+      .bio-lead {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .quick-grid,
+      .international-grid,
+      .experience-item {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel {
+        padding: 22px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .contact-link {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sobre mí</h1>
-    <p>Conoce más de Darío Apolo</p>
+  <div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Navegacion principal">
+        <a class="brand" href="index.html" aria-label="Inicio">
+          Dar&iacute;o Apolo
+          <span>Arquitectura + Urbanismo</span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html#proyectos">Proyectos</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#herramientas">Herramientas</a>
+          <a href="cv-dario-apolo.pdf.pdf" target="_blank" rel="noreferrer">CV</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <!-- Columna izquierda (Foto + nombre) -->
-    <div class="profile">
-      <img src="img/perfil.jpg" alt="Foto de Darío Apolo">
-      <h2>Darío Apolo</h2>
-      <p><em>Urbanista · Planificador y Diseñador de Proyectos de Obras</em></p>
-    </div>
+    <section class="hero">
+      <div class="container hero__content">
+        <div class="eyebrow">Perfil ejecutivo</div>
+        <h1>Arquitecto urbanista con enfoque en proyectos publicos, territorio y ejecucion.</h1>
+        <p>Mi trabajo une dise&ntilde;o urbano, gesti&oacute;n p&uacute;blica, documentaci&oacute;n t&eacute;cnica y comunicaci&oacute;n visual para convertir ideas urbanas en proyectos comprensibles, viables y presentables.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="index.html#proyectos">Ver portafolio</a>
+          <a class="btn btn--primary" href="cv-dario-apolo.pdf.pdf" target="_blank" rel="noreferrer">Ver CV</a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Columna derecha (CV) -->
-    <div class="cv-box">
-      <h3>Perfil</h3>
-      <p>José Darío Apolo Guachizaca, nacido en agosto de 1996 en la ciudad de Machala, Ecuador. Me gradué como arquitecto en la Facultad de Arquitectura y Urbanismo de la Universidad de Guayaquil. Magister en planificación del territorio en la UTPL. 
-Actualmente, me desempeño como Analista de Diseño de Proyectos de Obras de Inversión en el Gobierno Autónomo Descentralizado Municipal de Machala.</p>
+    <section class="profile">
+      <div class="container profile-layout">
+        <aside class="profile-photo reveal">
+          <img src="perfil.png" alt="Retrato profesional de Dario Apolo" loading="lazy">
+          <div class="profile-photo__body">
+            <strong>Jos&eacute; Dar&iacute;o Apolo Guachizaca</strong>
+            <span>Arquitecto urbanista | Mag&iacute;ster en planificaci&oacute;n del territorio</span>
+          </div>
+        </aside>
 
-<P>Mi trayectoria se ha centrado en contribuir al desarrollo urbanístico de Machala, donde he participado en la planificación y ejecución de proyectos que mejoran la calidad de vida de la comunidad. Mi compromiso con el diseño responsable y sostenible ha sido clave en cada iniciativa en la que participo.
+        <div class="bio">
+          <div class="reveal">
+            <span class="section-kicker">Sobre mi</span>
+            <h2 class="section-title">Un perfil tecnico con lectura urbana y sensibilidad publica.</h2>
+          </div>
+          <p class="bio-lead reveal">Soy arquitecto por la Universidad de Guayaquil y mag&iacute;ster en planificaci&oacute;n del territorio por la Universidad T&eacute;cnica Particular de Loja. Actualmente me desempe&ntilde;o como Analista de Dise&ntilde;o de Proyectos de Obras de Inversi&oacute;n en el Gobierno Aut&oacute;nomo Descentralizado Municipal de Machala.</p>
+          <p class="reveal">Mi trayectoria se concentra en proyectos que mejoran la calidad de vida urbana: parques, plazas, regeneraciones, equipamientos, movilidad activa, accesibilidad y estrategias de espacio p&uacute;blico. Trabajo desde la lectura del territorio hasta el material tecnico necesario para formular, presentar y ejecutar proyectos.</p>
+          <p class="reveal">Me interesa que cada propuesta tenga una base clara: diagnostico, utilidad social, legibilidad espacial, mantenimiento posible, comunicaci&oacute;n efectiva y documentaci&oacute;n ordenada para equipos tecnicos y decisores.</p>
 
-<P></P>Además de mi labor profesional, participo activamente en iniciativas comunitarias que promueven el acceso equitativo a espacios públicos y la preservación del patrimonio cultural de nuestra ciudad.
+          <div class="quick-grid">
+            <div class="quick-item reveal">
+              <strong>20+</strong>
+              <span>Proyectos urbanos, parques, plazas y regeneraciones.</span>
+            </div>
+            <div class="quick-item reveal">
+              <strong>SIG</strong>
+              <span>Lectura territorial, cartografia y analisis urbano.</span>
+            </div>
+            <div class="quick-item reveal">
+              <strong>AEC</strong>
+              <span>Planos, modelado, renders, laminas y fichas tecnicas.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-Con mi trabajo, busco dejar una huella positiva en el paisaje urbano de Machala y servir como ejemplo para futuras generaciones de arquitectos y urbanistas en Ecuador.</p>
+    <section class="experience" id="experiencia">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Experiencia</span>
+            <h2 class="section-title">Trayectoria orientada a resultados urbanos.</h2>
+          </div>
+          <p class="section-lead">Experiencia combinando dise&ntilde;o, formulaci&oacute;n, presentaci&oacute;n, seguimiento y administraci&oacute;n de proyectos de inversion publica.</p>
+        </div>
 
-      <h3>Experiencia</h3>
-      <ul>
-        <li>Más de 20 proyectos de parques, plazas y regeneraciones urbanas.</li>
-        <li>Fiscalización y Administracion de Contratos Públicos</li>
-        <li>Diseños con criterios de accesibilidad universal y movilidad activa.</li>
-        <li>Propuestas inspiradas en Jane Jacobs, Jan Gehl y Kevin Lynch.</li>
-      </ul>
+        <div class="experience-list">
+          <article class="experience-item reveal">
+            <div>
+              <time>Actualidad</time>
+            </div>
+            <div>
+              <h3>Analista de Dise&ntilde;o de Proyectos de Obras de Inversi&oacute;n</h3>
+              <p>Gobierno Aut&oacute;nomo Descentralizado Municipal de Machala. Desarrollo de propuestas urbanas, documentaci&oacute;n tecnica, renders, apoyo SIG, fichas, presentaciones y material para formulaci&oacute;n de proyectos.</p>
+            </div>
+          </article>
+          <article class="experience-item reveal">
+            <div>
+              <span class="label">Especialidad</span>
+            </div>
+            <div>
+              <h3>Regeneraci&oacute;n urbana, parques y equipamientos</h3>
+              <p>Participaci&oacute;n en proyectos de espacio p&uacute;blico, parques barriales, plazas, mobiliario, accesibilidad, movilidad activa y mejoras de calidad urbana en Machala.</p>
+            </div>
+          </article>
+          <article class="experience-item reveal">
+            <div>
+              <span class="label">Gestion</span>
+            </div>
+            <div>
+              <h3>Fiscalizaci&oacute;n y administraci&oacute;n contractual</h3>
+              <p>Apoyo en seguimiento de obra, cronogramas, novedades, contratistas, documentaci&oacute;n, recursos operativos y revisi&oacute;n de avances tecnicos.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      <h3>Formación</h3>
-      <ul>
-        <li>Arquitecto  Urbanista en Universidad de Guayaquil</li>
-        <li>Magister en Planificación del territorio en Universidad Técnica Particular de Loja</li>
-      </ul>
+    <section class="tools" id="herramientas">
+      <div class="container tools-layout">
+        <div class="toolset reveal">
+          <span class="section-kicker">Formacion</span>
+          <h2 class="section-title">Base academica y vision territorial.</h2>
+          <p>Arquitecto urbanista por la Universidad de Guayaquil y mag&iacute;ster en planificaci&oacute;n del territorio por la UTPL, con enfoque en urbanismo, gesti&oacute;n de proyectos y desarrollo territorial.</p>
+        </div>
+        <div class="toolset reveal">
+          <h3>Herramientas y capacidades</h3>
+          <div class="skill-cloud">
+            <span>AutoCAD</span>
+            <span>QGIS / SIG</span>
+            <span>SketchUp</span>
+            <span>Lumion</span>
+            <span>V-Ray</span>
+            <span>BIM</span>
+            <span>Photoshop</span>
+            <span>Illustrator</span>
+            <span>Planificaci&oacute;n urbana</span>
+            <span>Espacio p&uacute;blico</span>
+            <span>Fiscalizaci&oacute;n</span>
+            <span>Administraci&oacute;n de contratos</span>
+            <span>Documentaci&oacute;n AEC</span>
+            <span>Presentaciones ejecutivas</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <h3>Habilidades</h3>
-      <ul>
-        <li>Planificación urbana sostenible.</li>
-        <li>Gestión de proyectos de inversión pública.</li>
-        <li>Manejo de AutoCAD, QGIS, Illustrator, Photoshop, Sketchup, Lumion, Vray, BIM.</li>
-      </ul>
-    </div>
+    <section class="international">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">Proyeccion internacional</span>
+            <h2 class="section-title">Preparado para equipos de arquitectura, urbanismo e inmobiliario.</h2>
+          </div>
+          <p class="section-lead">Este perfil esta orientado a oportunidades donde el valor esta en conectar tecnica, territorio, visualizacion y gestion.</p>
+        </div>
+        <div class="international-grid">
+          <article class="reveal">
+            <h3>Arquitectura y urbanismo</h3>
+            <p>Apoyo en dise&ntilde;o urbano, estudios de sitio, espacio p&uacute;blico, movilidad peatonal, parques y equipamientos.</p>
+          </article>
+          <article class="reveal">
+            <h3>Planificaci&oacute;n territorial</h3>
+            <p>Capacidad para ordenar informaci&oacute;n urbana, mapear, diagnosticar y convertir datos territoriales en decisiones de proyecto.</p>
+          </article>
+          <article class="reveal">
+            <h3>Tecnico comercial</h3>
+            <p>Perfil util para presentar propuestas, explicar valor de proyecto, producir material visual y acompa&ntilde;ar procesos con clientes o decisores.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <span class="section-kicker">Contacto</span>
+            <h2>Conversemos sobre proyectos urbanos u oportunidades profesionales.</h2>
+            <p>Disponible para roles en arquitectura, urbanismo, planificaci&oacute;n territorial, gesti&oacute;n de proyectos, visualizaci&oacute;n urbana y apoyo tecnico-comercial.</p>
+            <div class="cta-actions" style="margin-top: 22px;">
+              <a class="btn btn--primary" href="mailto:joseapolo1996@gmail.com">Enviar correo</a>
+              <a class="btn btn--outline" href="https://www.linkedin.com/in/joseapolog" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
+          <div class="contact-list" aria-label="Canales de contacto">
+            <a class="contact-link" href="mailto:joseapolo1996@gmail.com"><span>Email</span><span>joseapolo1996@gmail.com</span></a>
+            <a class="contact-link" href="https://www.linkedin.com/in/joseapolog" target="_blank" rel="noreferrer"><span>LinkedIn</span><span>/in/joseapolog</span></a>
+            <a class="contact-link" href="https://wa.me/593981343006" target="_blank" rel="noreferrer"><span>WhatsApp</span><span>+593 981 343 006</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    © <span id="year"></span> Darío Apolo · 
-    <a href="index.html">Volver al inicio</a>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Dar&iacute;o Apolo. Perfil profesional.</p>
+      <div class="footer-links">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#proyectos">Proyectos</a>
+        <a href="mailto:joseapolo1996@gmail.com">Correo</a>
+      </div>
+    </div>
   </footer>
 
   <script>
+    const progressBar = document.getElementById("progressBar");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = document.body.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        document.body.classList.remove("nav-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = height > 0 ? (scrollTop / height) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .14 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
   </script>
 </body>
 </html>
->>>>>>> f18e1ec088299732608184079797efe5639d4ea9
