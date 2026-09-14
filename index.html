@@ -974,6 +974,17 @@
         transition: none !important;
       }
     }
+
+    .project-register { background: var(--soft); scroll-margin-top: 90px; }
+    .register-summary { color: var(--forest); font-weight: 700; }
+    .register-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px; }
+    .register-group { min-width: 0; border-top: 2px solid var(--forest); padding-top: 18px; }
+    .register-group h3 { margin: 0 0 18px; font-size: 1.15rem; }
+    .register-group h3 span { color: var(--muted); font-size: .9rem; margin-left: 8px; }
+    .register-list { list-style: none; padding: 0; margin: 0; }
+    .register-list li { padding: 10px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .register-link { display: inline-block; color: var(--forest); text-decoration: underline; text-underline-offset: 4px; margin-top: 8px; }
+    @media (max-width: 760px) { .register-grid { grid-template-columns: 1fr; gap: 28px; } }
   </style>
 </head>
 <body>
@@ -1026,7 +1037,8 @@
       <div class="container stats">
         <div class="stat">
           <strong>20+</strong>
-          <span>Parques, plazas y regeneraciones urbanas</span>
+          <span>Participación en parques, plazas y regeneraciones urbanas</span>
+          <a class="register-link" href="#trayectoria-proyectos">Ver los 25 proyectos e intervenciones</a>
         </div>
         <div class="stat">
           <strong>4</strong>
@@ -1092,7 +1104,7 @@
             <span class="section-kicker">Casos destacados</span>
             <h2 class="section-title" id="showcase-title">Proyectos con narrativa, imagen y evidencia t&eacute;cnica.</h2>
           </div>
-          <p class="section-lead">La experiencia muestra cada obra como caso profesional: rol, herramientas, valor urbano y una galeria visual construida con tus propios archivos.</p>
+          <p class="section-lead">Una selecci&oacute;n de proyectos con participaci&oacute;n profesional, enfoque urbano y material visual.</p>
         </div>
         <div class="showcase-layout">
           <div class="featured-tabs" id="featuredTabs" aria-label="Seleccion de proyectos destacados"></div>
@@ -1116,18 +1128,74 @@
             <span class="section-kicker">Portafolio</span>
             <h2 class="section-title">Seleccion de proyectos urbanos.</h2>
           </div>
-          <p class="section-lead">Filtros por enfoque para que el recorrido sea rapido: regeneraci&oacute;n urbana, parques, movilidad, sostenibilidad y equipamientos.</p>
+          <p class="section-lead">Casos seleccionados de una trayectoria de m&aacute;s de 20 proyectos e intervenciones. <a class="register-link" href="#trayectoria-proyectos">Consultar el listado de proyectos</a>.</p>
         </div>
 
         <div class="filters reveal" aria-label="Filtros de proyectos">
           <button class="filter-btn is-active" type="button" data-filter="todos">Todos</button>
           <button class="filter-btn" type="button" data-filter="urbanismo">Urbanismo</button>
-          <button class="filter-btn" type="button" data-filter="parques">Parques</button>
           <button class="filter-btn" type="button" data-filter="movilidad">Movilidad</button>
           <button class="filter-btn" type="button" data-filter="sostenibilidad">Sostenibilidad</button>
         </div>
 
         <div class="project-grid" id="projectGrid"></div>
+      </div>
+    </section>
+
+    <section class="project-register" id="trayectoria-proyectos" aria-labelledby="register-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Trayectoria en Machala</span>
+            <h2 class="section-title" id="register-title">Más de 20 proyectos e intervenciones urbanas.</h2>
+          </div>
+          <div>
+            <p class="section-lead">Participación profesional en parques, plazas, espacios culturales y regeneraciones urbanas. Las galerías presentan una selección de esta trayectoria.</p>
+            <p class="register-summary">25 intervenciones en esta relación · 14 parques · 2 plazas · 1 paseo cultural · 8 regeneraciones urbanas</p>
+          </div>
+        </div>
+        <div class="register-grid">
+          <article class="register-group">
+            <h3>Parques <span>14</span></h3>
+            <ul class="register-list">
+              <li>Parque Miraflores</li>
+              <li>Parque La Roldós</li>
+              <li>Parque Luz de América</li>
+              <li>Parque 20 de Junio</li>
+              <li>Parque Liliam María</li>
+              <li>Parque Santa Elena</li>
+              <li>Parque Cdla. Hospital Teófilo Dávila</li>
+              <li>Parque Puesta de Sol</li>
+              <li>Parque Los Vergeles</li>
+              <li>Parque Cuba Libre</li>
+              <li>Parque Blanca García</li>
+              <li>Adecuaciones del Parque Colón</li>
+              <li>Adecuaciones del Parque Tanque Rojo</li>
+              <li>Adecuaciones del Parque Simón Bolívar</li>
+            </ul>
+          </article>
+          <article class="register-group">
+            <h3>Plazas y paseo cultural <span>03</span></h3>
+            <ul class="register-list">
+              <li>Adecuaciones de la Plaza Machala Amor y Esperanza</li>
+              <li>Adecuaciones de la Plaza La Juventud</li>
+              <li>Paseo Cultural Diego Minuche Garrido</li>
+            </ul>
+          </article>
+          <article class="register-group">
+            <h3>Regeneraciones urbanas <span>08</span></h3>
+            <ul class="register-list">
+              <li>10 de Septiembre</li>
+              <li>Sucre y Olmedo</li>
+              <li>Centro de Machala</li>
+              <li>La Iberia</li>
+              <li>25 de Junio</li>
+              <li>Bellos Horizontes</li>
+              <li>7 de Marzo</li>
+              <li>Prolongación de la avenida Alejandro Castro Benítez</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1233,30 +1301,6 @@
         gallery: ["render1_1%20-%20Foto.jpg", "render1_2%20-%20Foto.jpg", "render1_3%20-%20Foto.jpg", "render1_4%20-%20Foto.jpg", "665.jpg"]
       },
       {
-        id: "cdla-machala",
-        category: "parques",
-        type: "Parque innovador",
-        title: "Cdla. Machala - Parque innovador",
-        cover: "img/parque1.jpg",
-        role: "Soporte de diseno, revision de campo, renders y fichas tecnicas",
-        summary: "Proyecto de parque barrial con areas de encuentro, sombra, juegos, permanencia y criterios de accesibilidad.",
-        impact: "Aporta una experiencia publica contemporanea: mobiliario, vegetacion, seguridad visual y espacios flexibles para comunidad.",
-        tags: ["Parks", "Civic Equipment", "Accessibility", "Community Use"],
-        gallery: ["img/parque1.jpg", "img/parque2.jpg", "img/parque3.jpg", "img/parque4.jpg", "img/parque7.jpg", "img/parque8.jpg", "img/parque9.jpg"]
-      },
-      {
-        id: "parques-equipamientos",
-        category: "parques",
-        type: "Espacio publico",
-        title: "Parques y Equipamientos Urbanos de Machala",
-        cover: "img/parque7.jpg",
-        role: "Documentacion tecnica, modelado 3D, renders y apoyo de formulacion",
-        summary: "Portafolio de parques, equipamientos civicos y mejoras barriales para fortalecer el uso comunitario del espacio publico.",
-        impact: "Mejora la calidad del espacio publico mediante accesibilidad, lectura de necesidades locales y material tecnico para inversion.",
-        tags: ["Parks", "Public Space", "Urban Regeneration", "Technical Documentation"],
-        gallery: ["img/parque7.jpg", "img/parque8.jpg", "img/parque9.jpg", "img/parque6.jpg", "img/parque2.jpg", "img/parque3.jpg"]
-      },
-      {
         id: "plaza-bicentenario",
         category: "urbanismo",
         type: "Plaza y equipamiento",
@@ -1294,7 +1338,7 @@
       }
     ];
 
-    const featuredIds = ["centro-machala", "interseccion-junio", "cdla-machala", "suds-corredor"];
+    const featuredIds = ["centro-machala", "interseccion-junio", "plaza-bicentenario", "suds-corredor"];
     const featuredProjects = featuredIds.map((id) => projects.find((project) => project.id === id));
     const projectGrid = document.getElementById("projectGrid");
     const modal = document.getElementById("projectModal");
